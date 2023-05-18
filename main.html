@@ -19,7 +19,7 @@
 
             var table = document.getElementById('book-list');
             var row = table.insertRow(-1);
-            row.innerHTML = '<td>' + title + '</td><td>' + author + '</td><td>' + isbn + '</td><td class="delete">Delete</td>';
+            row.innerHTML = '<td>' + title + '</td><td>' + author + '</td><td>' + isbn + '</td><td ><button class="delete">Delete</button></td>';
 
             document.getElementById('title').value = '';
             document.getElementById('author').value = '';
@@ -28,7 +28,7 @@
             var deleteButtons = document.getElementsByClassName('delete');
             for (var i = 0; i < deleteButtons.length; i++) {
                 deleteButtons[i].onclick = function() {
-                    var row = this.parentNode;
+                    var row = this.parentNode.parentNode;
                     row.parentNode.removeChild(row);
                 }
             }
