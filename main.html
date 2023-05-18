@@ -1,16 +1,67 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <title>My Book List</title>
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .delete {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function addBook() {
+            var title = document.getElementById('title').value;
+            var author = document.getElementById('author').value;
+            var isbn = document.getElementById('isbn').value;
+
+            var table = document.getElementById('book-list');
+            var row = table.insertRow(-1);
+            row.innerHTML = '<td>' + title + '</td><td>' + author + '</td><td>' + isbn + '</td><td class="delete">Delete</td>';
+
+            document.getElementById('title').value = '';
+            document.getElementById('author').value = '';
+            document.getElementById('isbn').value = '';
+
+            var deleteButtons = document.getElementsByClassName('delete');
+            for (var i = 0; i < deleteButtons.length; i++) {
+                deleteButtons[i].onclick = function() {
+                    var row = this.parentNode;
+                    row.parentNode.removeChild(row);
+                }
+            }
+        }
+    </script>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    <h1>My Book List</h1>
 
+    <div class="form-group">
+        <input type="text" id="title" placeholder="Title" required>
+    </div>
+
+    <div class="form-group">
+        <input type="text" id="author" placeholder="Author" required>
+    </div>
+
+    <div class="form-group">
+        <input type="text" id="isbn" placeholder="ISBN#" required>
+    </div>
+
+    <button id="submit" onclick="addBook()">Submit</button>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN#</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="book-list"></tbody>
+    </table>
 </body>
-
 </html>
